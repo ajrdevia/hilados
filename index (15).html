@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hilados — Juego de palabras</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ PANTALLA DE INICIO ============ -->
+<section id="screen-home" class="screen">
+  <div class="home-wrap">
+    <div class="brand">
+      <div class="brand-spool" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="spool-svg">
+          <circle cx="50" cy="50" r="42" class="spool-ring ring-a"/>
+          <circle cx="50" cy="50" r="30" class="spool-ring ring-b"/>
+          <circle cx="50" cy="50" r="18" class="spool-ring ring-c"/>
+        </svg>
+      </div>
+      <h1 class="title">Hilados</h1>
+      <p class="subtitle">Uní las letras, tejé las palabras</p>
+    </div>
+
+    <div class="credits-pill" id="home-credits">
+      <span class="credits-icon">🧵</span>
+      <span id="home-credits-value">50</span>
+      <span class="credits-label">créditos</span>
+    </div>
+
+    <div class="daily-card" id="daily-card">
+      <div class="daily-info">
+        <span class="daily-tag">🔥 Reto diario</span>
+        <span class="daily-theme" id="daily-theme">Tema</span>
+        <span class="daily-streak" id="daily-streak">Racha: 0 días</span>
+      </div>
+      <button class="daily-play-btn" id="daily-play-btn">Jugar</button>
+    </div>
+
+    <h2 class="section-label">Elegí un nivel</h2>
+    <div class="level-tiers" id="level-grid"><!-- generado por JS --></div>
+
+    <button class="link-btn" id="reset-progress">Reiniciar progreso</button>
+  </div>
+</section>
+
+<!-- ============ PANTALLA DE JUEGO ============ -->
+<section id="screen-game" class="screen hidden">
+  <header class="game-header">
+    <button class="icon-btn" id="btn-back" aria-label="Volver">←</button>
+    <div class="game-heading">
+      <span class="game-level-tag" id="game-level-tag">Nivel 1</span>
+      <span class="game-theme" id="game-theme">Cocina</span>
+    </div>
+    <div class="credits-pill small" id="game-credits">
+      <span class="credits-icon">🧵</span>
+      <span id="game-credits-value">50</span>
+    </div>
+  </header>
+
+  <div class="clue-strip" id="clue-strip"><!-- generado por JS --></div>
+
+  <div class="board-wrap">
+    <div class="board" id="board">
+      <svg id="thread-overlay" class="thread-overlay"></svg>
+      <div class="grid" id="grid"><!-- generado por JS --></div>
+    </div>
+  </div>
+
+  <footer class="game-footer">
+    <button class="action-btn ghost" id="btn-ad">
+      <span class="action-icon">📺</span>
+      <span>Ver anuncio<br><small>pista gratis</small></span>
+    </button>
+    <button class="action-btn primary" id="btn-hint">
+      <span class="action-icon">💡</span>
+      <span>Pista<br><small id="hint-cost-label">15 créditos</small></span>
+    </button>
+  </footer>
+</section>
+
+<!-- ============ MODAL: ANUNCIO SIMULADO ============ -->
+<div class="modal-backdrop hidden" id="modal-ad">
+  <div class="modal ad-modal">
+    <div class="ad-spinner"></div>
+    <p class="ad-text">Viendo anuncio...</p>
+    <p class="ad-sub">Tu pista está por llegar</p>
+  </div>
+</div>
+
+<!-- ============ MODAL: SIN CRÉDITOS ============ -->
+<div class="modal-backdrop hidden" id="modal-no-credits">
+  <div class="modal">
+    <h3>Créditos insuficientes</h3>
+    <p>No tenés suficientes créditos para esta pista. Mirá un anuncio para conseguir una gratis.</p>
+    <div class="modal-actions">
+      <button class="action-btn ghost" id="nc-watch-ad">Ver anuncio</button>
+      <button class="action-btn primary" id="nc-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: NIVEL COMPLETADO ============ -->
+<div class="modal-backdrop hidden" id="modal-win">
+  <div class="modal win-modal">
+    <div class="win-stars" id="win-stars">★★★</div>
+    <h3>¡Nivel completado!</h3>
+    <p id="win-summary">Tejiste todas las palabras.</p>
+    <p class="win-credits" id="win-credits-earned">+20 créditos</p>
+    <p class="win-daily-streak hidden" id="win-daily-streak"></p>
+    <div class="modal-actions">
+      <button class="action-btn ghost" id="win-share">📤 Compartir resultado</button>
+    </div>
+    <div class="modal-actions">
+      <button class="action-btn ghost" id="win-menu">Menú</button>
+      <button class="action-btn primary" id="win-next">Siguiente nivel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<div class="toast hidden" id="toast"></div>
+</body>
+</html>
